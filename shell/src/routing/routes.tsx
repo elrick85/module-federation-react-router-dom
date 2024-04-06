@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { Navigate, RouteObject } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { app1RoutingPrefix, app2RoutingPrefix } from "./constants";
+import { Home } from "../components/Home";
 
 const App1Lazy = lazy(() => import("../components/App1"));
 const App2Lazy = lazy(() => import("../components/App2"));
@@ -13,7 +14,11 @@ export const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <Navigate to={`/${app1RoutingPrefix}`} />,
+        element: <Navigate to={`/home`} />,
+      },
+      {
+        path: `/home`,
+        element: <Home />,
       },
       {
         path: `/${app1RoutingPrefix}/*`,

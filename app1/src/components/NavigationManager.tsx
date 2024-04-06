@@ -12,8 +12,11 @@ export function NavigationManager({ children }: NavigationManagerProps) {
 
   useEffect(() => {
     function shellNavigationHandler(event: Event) {
+      console.log('event', '[shell]', event)
       const pathname = (event as CustomEvent<string>).detail;
-      if (location.pathname === pathname || !matchRoutes(routes, { pathname })) {
+      const matchedRoutes = matchRoutes(routes, { pathname })
+
+      if (location.pathname === (pathname || "/") || !matchedRoutes) {
         return;
       }
       navigate(pathname);
